@@ -10,3 +10,8 @@
 > あとで見る
 
 *2026/2/24 0:13:00*
+
+### https://youtu.be/_bslhi4MMNM?si=S_pH5uWGNAGxCm0k
+🔗 https://youtu.be/_bslhi4MMNM?si=S_pH5uWGNAGxCm0k
+
+*2026/2/24 23:13:45*
