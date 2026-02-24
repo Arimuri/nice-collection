@@ -11,3 +11,8 @@
 > Mkgeeはやっぱいいな
 
 *2026/2/23 1:21:47*
+
+### https://youtu.be/WghTiQJxi7U?si=oVwRg7Tntrl1ru47
+🔗 https://youtu.be/WghTiQJxi7U?si=oVwRg7Tntrl1ru47
+
+*2026/2/24 23:17:35*
