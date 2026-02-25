@@ -21,3 +21,8 @@
 🔗 https://open.spotify.com/track/5ROXvW1FuKuvPNRS8SAOJe?si=Ax16nbAyS1Sqo6JGda6Alg
 
 *2026/2/25 11:32:45*
+
+### https://bandcamp.com/EmbeddedPlayer/v=2/album=1321814833/size=large/linkcol=0084B4/notracklist=true/twittercard=true/
+🔗 https://bandcamp.com/EmbeddedPlayer/v=2/album=1321814833/size=large/linkcol=0084B4/notracklist=true/twittercard=true/
+
+*2026/2/26 5:58:53*
