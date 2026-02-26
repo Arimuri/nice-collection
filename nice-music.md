@@ -26,3 +26,8 @@
 🔗 https://bandcamp.com/EmbeddedPlayer/v=2/album=1321814833/size=large/linkcol=0084B4/notracklist=true/twittercard=true/
 
 *2026/2/26 5:58:53*
+
+### https://youtu.be/DwWS98WZW7k?si=3aGgCq0ojvPJJ4FA
+🔗 https://youtu.be/DwWS98WZW7k?si=3aGgCq0ojvPJJ4FA
+
+*2026/2/26 14:09:21*
