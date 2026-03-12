@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jisshu Nice Collection</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, sans-serif; background: #1a1a2e; color: #eee; padding: 20px; max-width: 700px; margin: 0 auto; }
+h1 { text-align: center; margin-bottom: 20px; font-size: 1.4rem; padding-top: 10px; }
+.tabs { display: flex; gap: 8px; margin-bottom: 24px; justify-content: center; }
+.tab { padding: 8px 24px; border-radius: 20px; cursor: pointer; background: #16213e; border: 1px solid #333; color: #aaa; font-size: 0.95rem; }
+.tab.active { background: #0f3460; color: white; border-color: #e94560; }
+.person { margin-bottom: 28px; }
+.person-name { font-size: 0.9rem; color: #aaa; margin-bottom: 10px; padding-left: 8px; border-left: 3px solid #e94560; }
+.entries { display: flex; flex-direction: column; gap: 8px; }
+.entry { background: #16213e; border-radius: 8px; padding: 12px 14px; }
+.entry a { color: #60a5fa; text-decoration: none; word-break: break-all; font-size: 0.95rem; }
+.entry a:hover { text-decoration: underline; }
+.comment { color: #ccc; margin-top: 4px; font-size: 0.9rem; line-height: 1.5; }
+.date { color: #555; font-size: 0.75rem; margin-top: 6px; }
+.empty { text-align: center; color: #555; margin-top: 60px; }
+</style>
+</head>
+<body>
+<h1>🎵🎬 Jisshu Nice Collection</h1>
+<div class="tabs">
+  <div class="tab active" onclick="show('music')">🎵 Music</div>
+  <div class="tab" onclick="show('movie')">🎬 Movie</div>
+</div>
+<div id="app">読み込み中...</div>
+<script>
+const DATA_URL = "https://raw.githubusercontent.com/Arimuri/nice-collection/main/jisshu-nice.json";
+let DATA = null, currentTab = "music";
+
+async function load() {
+  try {
+    const res = await fetch(DATA_URL + "?t=" + Date.now());
+    DATA = await res.json();
+    render();
+  } catch(e) {
+    document.getElementById("app").innerHTML = "<p class='empty'>データを読み込めませんでした</p>";
+  }
+}
+
+function show(tab) {
+  currentTab = tab;
+  document.querySelectorAll(".tab").forEach((t, i) => {
+    t.classList.toggle("active", (i === 0 && tab === "music") || (i === 1 && tab === "movie"));
+  });
+  render();
+}
+
+function esc(s) { return s ? s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : ""; }
+
+function render() {
+  const entries = DATA?.[currentTab] ?? [];
+  if (!entries.length) {
+    document.getElementById("app").innerHTML = "<p class='empty'>まだ投稿がありません</p>";
+    return;
+  }
+  const byName = {};
+  for (const e of [...entries].reverse()) {
+    (byName[e.name] = byName[e.name] || []).push(e);
+  }
+  let html = "";
+  for (const [name, items] of Object.entries(byName)) {
+    html += `<div class="person"><div class="person-name">${esc(name)} (${items.length}件)</div><div class="entries">`;
+    for (const item of items) {
+      const date = new Date(item.timestamp).toLocaleDateString("ja-JP", {month:"short", day:"numeric"});
+      html += `<div class="entry">`;
+      if (item.url) html += `<a href="${esc(item.url)}" target="_blank">${esc(item.comment || item.url)}</a>`;
+      if (item.comment && item.url) html += `<div class="comment">${esc(item.comment)}</div>`;
+      if (!item.url) html += `<div class="comment">${esc(item.comment)}</div>`;
+      html += `<div class="date">${date}</div></div>`;
+    }
+    html += `</div></div>`;
+  }
+  document.getElementById("app").innerHTML = html;
+}
+
+load();
+</script>
+</body>
+</html>
